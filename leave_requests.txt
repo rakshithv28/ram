@@ -1,0 +1,15 @@
+Employee Name: Sohan
+Leave Type: sick
+Start Date: 2023-10-18
+End Date: 2023-10-19
+
+Employee Name: Sohan
+Leave Type: sick
+Start Date: 2023-10-18
+End Date: 2023-10-19
+
+Employee Name: John Doe
+Leave Type: vacation
+Start Date: 2023-10-27
+End Date: 2023-10-28
+

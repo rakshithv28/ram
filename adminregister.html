@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://kit.fontawesome.com/ffc92e568f.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <a href="index.html" class="bzx"><i class="fa-solid fa-house fa-2xl"></i></a>
+    <div class="container">
+        <div class="nxt"><u><h2>Employee Information Form</h2></u></div>
+        <form action="process_form.php" method="POST">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="employee-id">Employee ID:</label>
+                <input type="text" id="employee-id" name="employee-id" required>
+            </div>
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="text" id="phone" name="phone" required oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 10);">
+            </div>
+            <div class="form-group">
+                <label for="aadhar-no">Aadhar Number:</label>
+                <input type="text" id="aadhar-no" name="aadhar-no" required oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 12);">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <div id="password-rules"></div>
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password:</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+            </div>
+            <button type="submit" class="submit-btn">Submit</button>                     
+        </form>
+        <form action="import.php" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="excel_file">Upload Excel File:</label>
+                <input type="file" id="excel_file" name="excel_file" accept=".xls, .xlsx" required>
+            </div>
+            <button type="submit" class="submit-btn">Import Data</button>
+        </form>  
+        <a href="index.html"><button type="cancel" class="cancel-btn">Cancel</button></a>
+    </div>
+    
+    <script>
+        function validateForm() {
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirm-password").value;
+            const passwordRules = document.getElementById("password-rules");
+            
+            // Password rules
+            const minLength = 8;
+            const hasUpperCase = /[A-Z]/.test(password);
+            const hasLowerCase = /[a-z]/.test(password);
+            const hasDigit = /\d/.test(password);
+            const hasSpecialChar = /[@$!%*?&]/.test(password);
+
+            // Validate the password
+            if (password.length < minLength) {
+                passwordRules.innerHTML = "Password must be at least 8 characters long.";
+                return false;
+            } else if (!hasUpperCase) {
+                passwordRules.innerHTML = "Password must include an uppercase letter.";
+                return false;
+            } else if (!hasLowerCase) {
+                passwordRules.innerHTML = "Password must include a lowercase letter.";
+                return false;
+            } else if (!hasDigit) {
+                passwordRules.innerHTML = "Password must include a digit.";
+                return false;
+            } else if (!hasSpecialChar) {
+                passwordRules.innerHTML = "Password must include a special character (@, $, !, %, *, ?, or &).";
+                return false;
+            } else if (password !== confirmPassword) {
+                passwordRules.innerHTML = "Passwords do not match.";
+                return false;
+            } else {
+                passwordRules.innerHTML = "";
+                return true;
+            }
+        }
+    </script>
+</body>
+<link rel="stylesheet" href="./styles/regstyle.css">
+</html>
